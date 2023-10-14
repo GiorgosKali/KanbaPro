@@ -3,4 +3,4 @@ WORKDIR /webApp
 COPY . .
 RUN npm install
 CMD ["npm","run","dev"]
-EXPOSE 3000
+EXPOSE 5173
