@@ -21,7 +21,7 @@ const Card = ({ card, listID }: { card: tCard, listID: string }) => {
 
                 </div>
                 {/* Body */}
-                <textarea className="m-1 p-1 text-md font-semibold w-full min-h-full bg-gray-700 hover:bg-gray-600 focus:bg-[#242424] focus:outline outline-1 outline-[#646cff] rounded-lg focus:text-gray-50"
+                <textarea className=" p-1 text-md font-semibold w-full min-h-full bg-gray-700 hover:bg-gray-600 focus:bg-[#242424] focus:outline outline-1 outline-[#646cff] rounded-lg focus:text-gray-50"
                     value={card.body}
                     onChange={(e) => { store.updateCard(listID, card.id, undefined ,e.target.value) }}
                 />
