@@ -43,8 +43,8 @@ export const useBoardStore = create(
       const card = list.cards?.find((c) => c.id === cardID);
       if (!card) return;
 
-      card.title = title ? title : card.title;
-      card.body = body ? body : card.body;
+      card.title = title !== undefined ? title : card.title;
+      card.body = body !== undefined ? body : card.body;
 
       set(() => ({
         lists: lists
