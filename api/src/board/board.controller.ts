@@ -18,16 +18,16 @@ import { BoardEntity } from './entities/board.entity';
 export class BoardController {
   constructor(private readonly boardService: BoardService) {}
 
-  @Post()
-  @ApiCreatedResponse({ type: BoardEntity })
-  create(@Body() createBoardDto: CreateBoardDto) {
-    return this.boardService.create(createBoardDto);
-  }
-
   @Get()
   @ApiOkResponse({ type: BoardEntity, isArray: true })
   findAll() {
     return this.boardService.findAll();
+  }
+
+  @Post()
+  @ApiCreatedResponse({ type: BoardEntity })
+  create(@Body() createBoardDto: CreateBoardDto) {
+    return this.boardService.create(createBoardDto);
   }
 
   @Get(':id')
