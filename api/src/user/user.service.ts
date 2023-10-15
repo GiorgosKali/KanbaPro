@@ -39,11 +39,12 @@ export class UserService {
   }
 
   create(createUserDto: CreateUserDto): any {
-    const { email, password, name } = createUserDto;
+    const { email, username, password, name } = createUserDto;
 
     const user = this.prisma.user.create({
       data: {
         email,
+        username,
         password,
         name,
       },
