@@ -27,7 +27,7 @@ const List = (list: tList) => {
                 <div className="h-5 hover:h-10 transition-all duration-200 footer text-slate-400  w-full flex justify-center" onMouseOver={() => setShowAddButton(true)} onMouseLeave={() => setShowAddButton(false)}>
 
 
-                    {showAddButton && <button onClick={() => store.addNewCardtoList(list.id)} className="text-lg rounded-[50%]  hover:text-white flex self-center bg-gray-900 hover:bg-gray-700 active:bg-[#242424] font-semibold p-2 outline-1 active:outline outline-[#646cff] ">
+                    {showAddButton && <button onClick={() => store.addNewCardtoList(list.id)} className="text-lg rounded-full  hover:text-white flex self-center bg-gray-900 hover:bg-gray-700 active:bg-[#242424] font-semibold p-2 outline-1 active:outline outline-[#646cff] ">
                         <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
