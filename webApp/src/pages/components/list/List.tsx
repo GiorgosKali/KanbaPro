@@ -13,7 +13,7 @@ const List = (list: tList) => {
                     {/* Title */}
                     <textarea className="text-xl me-1 w-full font-semibold p-1 h-10 bg-inherit hover:bg-gray-800 focus:bg-[#242424] focus:text-gray-50 resize-none rounded-lg  focus:outline outline-1 outline-[#646cff] "
                         value={list.title}
-                        onChange={() => { }} />
+                        onChange={(e) => { store.updateListTitle(list.id, e.target.value) }}/>
                     {/* BUtton */}
                     <button className="text-lg bg-gray-900 hover:bg-[#242424] focus:bg-[#242424] font-semibold p-2 outline-1 focus:outline outline-[#646cff] ">
                         <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">

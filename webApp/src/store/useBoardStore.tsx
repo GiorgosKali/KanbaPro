@@ -49,5 +49,15 @@ export const useBoardStore = create(
       set(() => ({
         lists: lists
       }));
+    },
+    updateListTitle: (listID: string, title: string) => {
+      const lists = get().lists;
+      const list = lists.find((list) => listID === list.id);
+      if (!list) return;
+
+      list.title =  title
+      set(() => ({
+        lists: lists
+      }));
     }
   })))
