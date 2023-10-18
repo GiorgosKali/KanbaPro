@@ -73,12 +73,6 @@ export interface BoardEntity {
  */
 export interface CreateBoardDto {
     /**
-     * The id of the user who owns the board
-     * @type {string}
-     * @memberof CreateBoardDto
-     */
-    'ownerId': string;
-    /**
      * The title of the board
      * @type {string}
      * @memberof CreateBoardDto
@@ -142,12 +136,6 @@ export interface RegisterDto {
  */
 export interface UpdateBoardDto {
     /**
-     * The id of the user who owns the board
-     * @type {string}
-     * @memberof UpdateBoardDto
-     */
-    'ownerId'?: string;
-    /**
      * The title of the board
      * @type {string}
      * @memberof UpdateBoardDto
@@ -204,10 +192,10 @@ export interface UserEntity {
     'password': string;
     /**
      * The boards of the user
-     * @type {Array<Array>}
+     * @type {Array<BoardEntity>}
      * @memberof UserEntity
      */
-    'boards': Array<any>;
+    'boards': Array<BoardEntity>;
 }
 
 /**
@@ -536,7 +524,7 @@ export const BoardApiAxiosParamCreator = function (configuration?: Configuration
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 

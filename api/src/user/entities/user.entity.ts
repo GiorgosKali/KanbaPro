@@ -48,6 +48,7 @@ export class UserEntity implements UserInterface {
   @ApiProperty({
     description: 'The boards of the user',
     format: 'array',
+    type: [BoardEntity],
   })
   boards: BoardEntity[];
 }
