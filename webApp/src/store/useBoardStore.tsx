@@ -26,7 +26,8 @@ export const useBoardStore = create(
       set(() => ({
         lists: lists
       }))
-    }, updateCard: (listID: string, cardID: string, title?: string, body?: string) => {
+    }, 
+    updateCard: (listID: string, cardID: string, title?: string, body?: string) => {
       const lists = get().lists;
       const list = lists.find((list) => listID === list.id);
       if (!list) return;
@@ -40,7 +41,8 @@ export const useBoardStore = create(
       set(() => ({
         lists: lists
       }));
-    }, moveCard: (sourceListID: string, targetListID: string, cardID: string) => {
+    }, 
+    moveCard: (sourceListID: string, targetListID: string, cardID: string) => {
       const lists = get().lists;
       const sourceList = lists.find((list) => list.id === sourceListID);
       const targetList = lists.find((list) => list.id === targetListID);
@@ -69,6 +71,14 @@ export const useBoardStore = create(
         lists: lists
       }));
     },
+    deleteList: (listID: string) => {
+      const lists = get().lists
+      const list = lists.filter((list) => list.id !== listID)
+      if (!list) return
+      set(() => ({
+        lists: list
+      }))
+    }, 
     // moveCardtoList: (listID: string, cardID: string) => {
     //   const lists = get().lists;
     //   const list = lists.find((list) => listID === list.id);

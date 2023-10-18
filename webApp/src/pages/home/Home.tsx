@@ -7,8 +7,8 @@ const Home = () => {
   return (
     <>
       <div className="h-screen w-screen ">
-      <DndProvider backend={HTML5Backend}>
-        <Board title="Board title" lists={store.lists} />
+        <DndProvider backend={HTML5Backend}>
+          <Board title="Board title" lists={store.lists} />
         </DndProvider>
       </div>
     </>
