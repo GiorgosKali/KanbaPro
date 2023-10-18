@@ -12,41 +12,50 @@ datasource db {
 
 model User {
   id        String   @id @default(uuid())
+
   username  String   @unique
   email     String   @unique
   name      String?
   password  String
+  boards    Board[]
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  boards    Board[]
 }
 
 model Board {
   id        String   @id @default(uuid())
+
   title     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   owner     User     @relation(fields: [ownerId], references: [id])
   ownerId   String
   lists     List[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model List {
   id        String   @id @default(uuid())
+
   title     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   board     Board    @relation(fields: [boardId], references: [id])
   boardId   String
   cards     Card[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Card {
   id        String   @id @default(uuid())
+
   title     String
+  index     Int
   body      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   list      List     @relation(fields: [listId], references: [id])
   listId    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
