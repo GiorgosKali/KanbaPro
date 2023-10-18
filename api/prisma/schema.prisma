@@ -51,6 +51,7 @@ model Card {
   id        String   @id @default(uuid())
 
   title     String
+  index     Int
   body      String?
   list      List     @relation(fields: [listId], references: [id])
   listId    String

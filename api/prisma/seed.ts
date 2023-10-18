@@ -24,6 +24,7 @@ async function main() {
                                     create: [
                                         {
                                             title: 'card name 1',
+                                            index: 0,
                                         },
                                     ],
                                 },
@@ -34,7 +35,7 @@ async function main() {
                                     create: [
                                         {
                                             title:'card name 2',
-
+                                            index: 0,
                                         },
                                     ],
                                 },
