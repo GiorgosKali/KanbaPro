@@ -26,7 +26,7 @@ export const useBoardStore = create(
       set(() => ({
         lists: lists
       }))
-    }, 
+    },
     updateCard: (listID: string, cardID: string, title?: string, body?: string) => {
       const lists = get().lists;
       const list = lists.find((list) => listID === list.id);
@@ -41,7 +41,7 @@ export const useBoardStore = create(
       set(() => ({
         lists: lists
       }));
-    }, 
+    },
     moveCard: (sourceListID: string, targetListID: string, cardID: string) => {
       const lists = get().lists;
       const sourceList = lists.find((list) => list.id === sourceListID);
@@ -78,7 +78,7 @@ export const useBoardStore = create(
       set(() => ({
         lists: list
       }))
-    }, 
+    },
     // moveCardtoList: (listID: string, cardID: string) => {
     //   const lists = get().lists;
     //   const list = lists.find((list) => listID === list.id);

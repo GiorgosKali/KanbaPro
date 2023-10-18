@@ -1,4 +1,5 @@
 import Home from './pages/home/Home'
+import Login from './pages/login/Login'
 import './App.css'
 
 import * as kanba from './apis/kanba';
@@ -19,8 +20,8 @@ function App() {
 
   return (
     <>
-      <button className="btn btn-primary" onClick={()=>testApi()}>Click me</button>
-     <Home />
+      {/* <Login /> */}
+      <Home />
     </>
   )
 }
