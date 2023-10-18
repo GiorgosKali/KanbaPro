@@ -7,18 +7,18 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class BoardService {
   constructor(private readonly prisma: PrismaService) {}
 
-  create(createBoardDto: CreateBoardDto) {
-    return this.prisma.board.create({
-      data: {
-        title: createBoardDto.title,
-        owner: {
-          connect: {
-            id: createBoardDto.ownerId,
-          },
-        },
-      },
-    });
-  }
+  // create(createBoardDto: CreateBoardDto) {
+  //   return this.prisma.board.create({
+  //     data: {
+  //       title: createBoardDto.title,
+  //       owner: {
+  //         connect: {
+  //           id: createBoardDto.ownerId,
+  //         },
+  //       }
+  //     },
+  //   });
+  // }
 
   findAll() {
     return this.prisma.board.findMany({
@@ -77,6 +77,60 @@ export class BoardService {
             cards: true,
           },
         },
+      },
+    });
+  }
+
+  createUserBoard(userId: string, createBoardDto: CreateBoardDto) {
+    return this.prisma.board.create({
+      data: {
+        title: createBoardDto.title,
+        owner: {
+          connect: {
+            id: userId,
+          },
+        },
+      },
+    });
+  }
+
+  updateUserBoard(
+    userId: string,
+    boardId: string,
+    updateBoardDto: UpdateBoardDto,
+  ) {
+    return this.prisma.board.update({
+      where: {
+        id: boardId,
+        ownerId: userId,
+      },
+      data: {
+        title: updateBoardDto.title,
+      },
+    });
+  }
+
+  findOneUserBoard(userId: string, boardId: string) {
+    return this.prisma.board.findUnique({
+      where: {
+        id: boardId,
+        ownerId: userId,
+      },
+      include: {
+        lists: {
+          include: {
+            cards: true,
+          },
+        },
+      },
+    });
+  }
+
+  deleteUserBoard(userId: string, boardId: string) {
+    return this.prisma.board.delete({
+      where: {
+        id: boardId,
+        ownerId: userId,
       },
     });
   }
