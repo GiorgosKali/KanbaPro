@@ -8,19 +8,21 @@ function App() {
   const testApi = async () => {
 
     const userApi = kanba.UsersApiFactory({
-      basePath:'http://localhost:8000',
+      basePath:'http://192.168.2.15:8000',
       isJsonMime:()=>true,
     })
     const authApi = kanba.AuthApiFactory({
-      basePath:'http://localhost:8000',
+      basePath:'http://192.168.2.15:8000',
       isJsonMime:()=>true,
     })
+    authApi.authControllerLogin({username:"", password:""})
 
   }
 
   return (
     <>
-      {/* <Login /> */}
+      <Login />
+      <button className="btn btn-primary h-screen" onClick={()=>testApi()}>Click me</button>
       <Home />
     </>
   )

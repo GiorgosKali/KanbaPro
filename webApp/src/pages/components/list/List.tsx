@@ -12,6 +12,7 @@ const List = (list: tList) => {
         drop: (item, _) => {
             // Handle the drop action here (e.g., moving the card to a new list)
             store.moveCard(item.listID, list.id, item.card.id)
+            store.updatenewListPossible(true)
         },
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
@@ -20,6 +21,10 @@ const List = (list: tList) => {
 
     const store = useBoardStore();
     const [showAddButton, setShowAddButton] = useState(false);
+    const handleNewListTitle = (title: string) => {
+        store.updateListTitle(list.id, title)
+        list.title!='New Title'&&store.updatenewListPossible(true)
+    }
     return (
         <>
             <div ref={drop} className="p-3 w-96 h-max min-h-[7rem] rounded-lg space-y-4 shadow bg-gray-900 text-slate-400 border border-[#101204] hover:border-slate-700 transition-all duration-50">
@@ -27,7 +32,7 @@ const List = (list: tList) => {
                     {/* Title */}
                     <textarea className="text-xl me-1 w-full font-semibold p-1 h-10 bg-inherit hover:bg-gray-800 focus:bg-[#242424] focus:text-gray-50 resize-none rounded-lg  focus:outline outline-1 outline-[#646cff] "
                         placeholder={list.title}
-                        onChange={(e) => { store.updateListTitle(list.id, e.target.value) }} />
+                        onChange={(e) => { handleNewListTitle(e.target.value) }} />
                     {/* BUtton */}
                     <Menu as="div" className="relative">
                         <Menu.Button>

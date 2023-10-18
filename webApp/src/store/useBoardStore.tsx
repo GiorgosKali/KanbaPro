@@ -3,8 +3,12 @@ import { combine } from 'zustand/middleware'
 import { tList } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 const lists: tList[] = [];
+const newListPossible: boolean = true;
 export const useBoardStore = create(
-  combine({ lists }, (set, get) => ({
+  combine({ lists, newListPossible }, (set, get) => ({
+    updatenewListPossible: (newListPossible:boolean) => set(() => ({
+      newListPossible: newListPossible
+    })),
     addList: () => set((state) => ({
       lists: [...state.lists, { id: uuidv4(), title: "New List", cards: [] }]
     })),
