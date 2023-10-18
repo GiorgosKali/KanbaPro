@@ -10,6 +10,7 @@ async function main() {
     const user = await prisma.user.create({
         data: {
             email: 'some@email.com',
+            username: 'jimmyUser',
             name: 'jimmy',
             password: '12345678',
             boards: {
@@ -23,6 +24,7 @@ async function main() {
                                     create: [
                                         {
                                             title: 'card name 1',
+                                            index: 0,
                                         },
                                     ],
                                 },
@@ -33,7 +35,7 @@ async function main() {
                                     create: [
                                         {
                                             title:'card name 2',
-
+                                            index: 0,
                                         },
                                     ],
                                 },

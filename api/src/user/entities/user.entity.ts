@@ -16,6 +16,12 @@ export class UserEntity implements UserInterface {
   email: string;
 
   @ApiProperty({
+    description: 'The username of the user',
+    format: 'string',
+  })
+  username: string;
+
+  @ApiProperty({
     description: 'The name of the user',
     format: 'string',
   })
