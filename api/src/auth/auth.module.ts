@@ -22,7 +22,7 @@ import { JwtStrategy } from './strategies/jwt-strategy';
     JwtModule.register({
       secret: `${process.env.JWT_SECRET}`,
       signOptions: {
-        expiresIn: '3600s',
+        expiresIn: '360000s',
       },
     }),
   ],

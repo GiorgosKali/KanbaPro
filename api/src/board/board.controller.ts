@@ -6,6 +6,8 @@ import {
   Param,
   Patch,
   Post,
+  Put,
+  Request,
   UseGuards,
 } from '@nestjs/common';
 import {
@@ -29,31 +31,39 @@ export class BoardController {
 
   @Get()
   @ApiOkResponse({ type: BoardEntity, isArray: true })
-  findAll() {
-    return this.boardService.findAll();
+  findAll(@Request() req) {
+    return this.boardService.getUserBoards(req.user.sub.id);
   }
 
   @Post()
   @ApiCreatedResponse({ type: BoardEntity })
-  create(@Body() createBoardDto: CreateBoardDto) {
-    return this.boardService.create(createBoardDto);
+  create(@Request() req, @Body() createBoardDto: CreateBoardDto) {
+    return this.boardService.createUserBoard(req.user.sub.id, createBoardDto);
   }
 
   @Get(':id')
   @ApiOkResponse({ type: BoardEntity })
-  findOne(@Param('id') id: string) {
-    return this.boardService.findOne(id);
+  findOne(@Request() req, @Param('id') id: string) {
+    return this.boardService.findOneUserBoard(req.user.sub.id, id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   @ApiOkResponse({ type: BoardEntity })
-  update(@Param('id') id: string, @Body() updateBoardDto: UpdateBoardDto) {
-    return this.boardService.update(id, updateBoardDto);
+  update(
+    @Request() req,
+    @Param('id') id: string,
+    @Body() updateBoardDto: UpdateBoardDto,
+  ) {
+    return this.boardService.updateUserBoard(
+      req.user.sub.id,
+      id,
+      updateBoardDto,
+    );
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: BoardEntity })
-  remove(@Param('id') id: string) {
-    return this.boardService.remove(id);
+  remove(@Request() req, @Param('id') id: string) {
+    return this.boardService.deleteUserBoard(req.user.sub.id, id);
   }
 }

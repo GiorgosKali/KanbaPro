@@ -15,9 +15,9 @@ CREATE TABLE "User" (
 CREATE TABLE "Board" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
+    "ownerId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "ownerId" TEXT NOT NULL,
 
     CONSTRAINT "Board_pkey" PRIMARY KEY ("id")
 );
@@ -26,9 +26,9 @@ CREATE TABLE "Board" (
 CREATE TABLE "List" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
+    "boardId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "boardId" TEXT NOT NULL,
 
     CONSTRAINT "List_pkey" PRIMARY KEY ("id")
 );
@@ -37,10 +37,11 @@ CREATE TABLE "List" (
 CREATE TABLE "Card" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
+    "index" INTEGER NOT NULL,
     "body" TEXT,
+    "listId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "listId" TEXT NOT NULL,
 
     CONSTRAINT "Card_pkey" PRIMARY KEY ("id")
 );
