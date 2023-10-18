@@ -43,7 +43,7 @@ const List = (list: tList) => {
                 </div>
                 {/* Cards */}
                 {/* {list.cards?.map((card: tCard, index: number) => <Card listID={list.id} card={card} key={index}  />)} */}
-                {list.cards?.map((card, index) => (
+                {list.cards?.map((card) => (
                     <Card key={card.id} card={card} listID={list.id} />
                 ))}
                 {/* Footer */}
