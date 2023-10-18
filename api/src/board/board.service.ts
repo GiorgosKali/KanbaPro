@@ -21,7 +21,15 @@ export class BoardService {
   }
 
   findAll() {
-    return this.prisma.board.findMany();
+    return this.prisma.board.findMany({
+      include: {
+        lists: {
+          include: {
+            cards: true,
+          },
+        },
+      },
+    });
   }
 
   findOne(id: string) {

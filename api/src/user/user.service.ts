@@ -39,15 +39,24 @@ export class UserService {
   }
 
   create(createUserDto: CreateUserDto): any {
-    const { email, password, name } = createUserDto;
+    const { email, username, password, name } = createUserDto;
 
     const user = this.prisma.user.create({
       data: {
+        username,
         email,
-        password,
         name,
+        password,
       },
     });
     return user;
+  }
+
+  findOneWithUsername(username: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        username: username,
+      },
+    });
   }
 }
