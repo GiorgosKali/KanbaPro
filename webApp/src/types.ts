@@ -1,7 +1,10 @@
 export interface tCard {
     id: string,
     title: string,
-    body?: string
+    body?: string,
+    createdAt?: string,
+    updatedAt?: string,
+    listId?: string
 }
 
 export interface tList {

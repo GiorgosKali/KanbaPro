@@ -26,7 +26,8 @@ export const useBoardStore = create(
       set(() => ({
         lists: lists
       }))
-    }, updateCard: (listID: string, cardID: string, title?: string, body?: string) => {
+    }, 
+    updateCard: (listID: string, cardID: string, title?: string, body?: string) => {
       const lists = get().lists;
       const list = lists.find((list) => listID === list.id);
       if (!list) return;
@@ -40,15 +41,54 @@ export const useBoardStore = create(
       set(() => ({
         lists: lists
       }));
+    }, 
+    moveCard: (sourceListID: string, targetListID: string, cardID: string) => {
+      const lists = get().lists;
+      const sourceList = lists.find((list) => list.id === sourceListID);
+      const targetList = lists.find((list) => list.id === targetListID);
+      if (!sourceList) return;
+      if (!sourceList.cards) return;
+      if (!targetList) return;
+      const cardIndex = sourceList.cards.findIndex((card) => card.id === cardID);
+      const movedCard = sourceList.cards[cardIndex]
+      sourceList.cards.splice(cardIndex, 1); // Remove the card from the source list
+      if (!targetList.cards) {
+        targetList.cards = [movedCard]
+      }
+      else {
+        targetList.cards.push(movedCard); // Add the card to the target list
+      }
+
+      set({ lists: lists }); // Update the state
     },
     updateListTitle: (listID: string, title: string) => {
       const lists = get().lists;
       const list = lists.find((list) => listID === list.id);
       if (!list) return;
 
-      list.title =  title
+      list.title = title
       set(() => ({
         lists: lists
       }));
-    }
+    },
+    deleteList: (listID: string) => {
+      const lists = get().lists
+      const list = lists.filter((list) => list.id !== listID)
+      if (!list) return
+      set(() => ({
+        lists: list
+      }))
+    }, 
+    // moveCardtoList: (listID: string, cardID: string) => {
+    //   const lists = get().lists;
+    //   const list = lists.find((list) => listID === list.id);
+    //   if (!list) return;
+    //   const cards = list.cards;
+
+    //   const card = cards?.find((card) => cardID === card.id);
+    //   set(() => ({
+    //     lists: lists
+
+    //   }));
+    // },
   })))

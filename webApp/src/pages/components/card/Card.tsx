@@ -1,14 +1,21 @@
 import { useBoardStore } from "../../../store/useBoardStore"
 import { tCard } from "../../../types"
+import { useDrag } from 'react-dnd';
 const Card = ({ card, listID }: { card: tCard, listID: string }) => {
+    const [, ref] = useDrag({
+        type: 'card',
+        item: { card, listID },
+    });
+
     const store = useBoardStore();
     return (
         <>
-            <div className="group/card p-3 w-full rounded-lg space-y-4 shadow bg-gray-700 text-slate-300 border border-[#101204] hover:border-slate-400 transition-all duration-50">
+            <div ref={ref} className="group/card p-3 w-full rounded-lg space-y-4 shadow bg-gray-700 text-slate-300 border border-[#101204] hover:border-slate-400 transition-all duration-50">
                 <div className="flex justify-between ">
                     {/* Title */}
                     <textarea className="text-lg w-full me-1 font-semibold p-1 h-9 bg-inherit hover:bg-gray-600 focus:bg-[#242424] resize-none rounded-lg  focus:outline outline-1 outline-[#646cff] focus:text-gray-50"
-                        value={card.title}
+                        placeholder={card.title}
+                        spellCheck={false}
                         onChange={(e) => { store.updateCard(listID, card.id, e.target.value, undefined) }}
                     />
                     {/* Button */}
@@ -18,12 +25,13 @@ const Card = ({ card, listID }: { card: tCard, listID: string }) => {
                         </svg>
 
                     </button>
-
                 </div>
                 {/* Body */}
                 <textarea className=" p-1 text-md font-semibold w-full min-h-full bg-gray-700 hover:bg-gray-600 focus:bg-[#242424] focus:outline outline-1 outline-[#646cff] rounded-lg focus:text-gray-50"
                     value={card.body}
-                    onChange={(e) => { store.updateCard(listID, card.id, undefined ,e.target.value) }}
+                    spellCheck={false}
+                    placeholder={"Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, veniam cupiditate sit hic repellat nostrum aspernatur laborum ut? Neque nesciunt omnis odit necessitatibus quod adipisci nulla modi. Temporibus, harum voluptas?                    "}
+                    onChange={(e) => { store.updateCard(listID, card.id, undefined, e.target.value) }}
                 />
 
             </div>
