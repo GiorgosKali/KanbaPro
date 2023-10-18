@@ -43,10 +43,10 @@ export class UserService {
 
     const user = this.prisma.user.create({
       data: {
-        email,
         username,
-        password,
+        email,
         name,
+        password,
       },
     });
     return user;
